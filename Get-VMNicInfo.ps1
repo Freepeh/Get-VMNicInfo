@@ -1,4 +1,21 @@
 ﻿function Get-VMNicInfo {
+<#
+.SYNOPSIS
+ Gets vNIC information for a VM or multiple VMs
+.DESCRIPTION
+ Gathers vNIC information from the adapter properties and from the vmtools vmguest layer 3 properties. IP, mac, vlan backing etc.
+.PARAMETER  Name
+ Name of VM, also accepts wildcards.
+.PARAMETER  Server
+ Specify the hosting vcenter server to imrpove effeciency. Default is all connected vcenters.
+.INPUTS
+ It will accept piping from name property.
+.OUTPUTS
+ To screen lists name,parent vm name,mac, ip, networkname, subnetmask, gateway,dns,connection status,
+.EXAMPLE
+ Get-VMNicInfo -Name VM1 -server vmca01
+ Will display info for vm VM1
+#>
     [cmdletbinding()]
     param(
         [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)][string[]]$Name,
